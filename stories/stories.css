@@ -1,0 +1,21 @@
+html[color-scheme=dark] {
+  background-color: #333;
+}
+
+html[color-scheme=light] {
+  background-color: #eee;
+}
+
+html[color-scheme=light] theme-switch::part(icon) {
+  background: #333;
+}
+html[color-scheme=light] theme-switch::part(caption) {
+  color: #333;
+}
+
+html[color-scheme=dark] theme-switch::part(icon) {
+  background: #eee;
+}
+html[color-scheme=dark] theme-switch::part(caption) {
+  color: #eee;
+}
