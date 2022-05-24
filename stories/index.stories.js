@@ -1,4 +1,5 @@
 import "../src/index.js";
+import "./stories.css";
 
 export default {
   parameters: {

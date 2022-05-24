@@ -1,11 +1,31 @@
-const styles = /*css*/ `
-:host {
+const styles = /* css */ `
+button {
+  background: transparent;
+  border: 1px solid grey;
+  width: 4rem;
+  height: 4rem;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+}
+
+i {
   background: red;
+  display: block;
   width: 2rem;
   height: 2rem;
   mask: var(--icon) center / contain no-repeat;
   -webkit-mask: var(--icon) center / contain no-repeat;
 }
+`
+
+const template = document.createElement('template');
+template.innerHTML = /* html */`
+<button>
+  <i part="icon"></i>
+  <span part="caption">Mode</span>
+</button>
 `
 
 class ThemeSwitch extends HTMLElement {
@@ -17,6 +37,7 @@ class ThemeSwitch extends HTMLElement {
     this.attachShadow({mode: 'open'});
     const style = document.createElement('style');
     style.textContent = styles;
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.shadowRoot.appendChild(style);
   }
 
@@ -68,6 +89,7 @@ class ThemeSwitch extends HTMLElement {
 
   update() {
     let icon = this.mode == 'light' ? 'sun-bold' : 'moon-fill'
+    this.shadowRoot.querySelector('span').innerText = this.mode;
     this.setAttribute('style', `--icon: url(https://api.iconify.design/ph:${icon}.svg)`);
   }
 }
